@@ -7,6 +7,7 @@ export class UserService {
     private users: Array<User> = [];
 
     getAll(): User[] {
+        //this.repositoy.find();
         return this.users;
     }
 
@@ -14,6 +15,7 @@ export class UserService {
         user.public_id = 'hash do id publico';
         
         this.users.push(user);
+        //this.repository.save(user);
 
         return {
             user: user,

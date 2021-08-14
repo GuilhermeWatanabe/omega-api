@@ -7,6 +7,7 @@ export class ProposalService {
     private proposals: Array<Proposal> = [];
 
     getAll(): Array<Proposal>  {
+        //this.repositoy.find();
         return this.proposals;
     }
 
@@ -21,6 +22,11 @@ export class ProposalService {
 
 
         return proposal;
+    }
+
+    delete(public_id: string) {
+        //this.repositoy.remove(public_id);
+        return public_id;
     }
 
     private calculateValue(): number {

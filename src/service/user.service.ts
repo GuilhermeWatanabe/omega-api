@@ -11,9 +11,9 @@ export class UserService {
     }
 
     create(user: User) {
-        this.users.push(user);
-
         user.public_id = 'hash do id publico';
+        
+        this.users.push(user);
 
         return {
             user: user,

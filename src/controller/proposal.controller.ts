@@ -5,15 +5,15 @@ import { Proposal } from "src/model/proposal.model";
 @Controller('propostas')
 export class ProposalController {
 
-    constructor(private ProposalService: ProposalService) {}
+    constructor(private proposalService: ProposalService) {}
 
     @Get()
-    teste() {
-        return 'kfdlkv';
+    getAll() {
+        return this.proposalService.getAll();
     }
 
     @Post()
-    create(@Body() proposal: Proposal) {
-        
+    create(@Body() proposal: Proposal): Proposal {
+        return this.proposalService.create(proposal);
     }
 }

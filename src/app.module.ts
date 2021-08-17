@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module';
 import { ProposalsModule } from './proposals/proposals.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -17,8 +17,8 @@ import { ProposalsModule } from './proposals/proposals.module';
       autoLoadEntities: true,
       synchronize: true,
     } as TypeOrmModuleOptions),
-    UsersModule,
     ProposalsModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

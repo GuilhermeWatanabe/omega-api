@@ -20,6 +20,6 @@ export class User {
 
   @BeforeInsert()
   hashPassword() {
-    this.password = hashSync(this.password, process.env.KEY);
+    this.password = hashSync(this.password, 8);
   }
 }

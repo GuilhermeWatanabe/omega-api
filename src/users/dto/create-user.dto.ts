@@ -6,6 +6,7 @@ export class CreateUserDto {
   @IsNotEmpty({
     message: 'O nome não pode ser nulo',
   })
+  @MinLength(3, { message: 'O nome deve ter no mínimo 3 caracteres' })
   name: string;
 
   @IsEmail(

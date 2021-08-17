@@ -21,25 +21,22 @@ export class ProposalsController {
   }
 
   @Get()
-  findAll() {
-    return this.proposalsService.findAll();
+  async findAll() {
+    return await this.proposalsService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.proposalsService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.proposalsService.findOneOrFail({ public_id: id });
   }
 
   @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateProposalDto: UpdateProposalDto,
-  ) {
-    return this.proposalsService.update(+id, updateProposalDto);
+  update(@Param('id') id: string) {
+    return this.proposalsService.update(id);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.proposalsService.remove(+id);
+    return this.proposalsService.remove(id);
   }
 }

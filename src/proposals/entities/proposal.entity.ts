@@ -1,7 +1,8 @@
 import { Load } from '../../load/entities/load.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm';
 import { EnergySource } from '../dto/energySource.enum';
 import { Submarket } from '../dto/submarket.enum';
+import { User } from 'src/users/entities/user.entity';
 
 @Entity()
 export class Proposal {
@@ -45,4 +46,7 @@ export class Proposal {
 
   @Column()
   proposal_value: string;
+
+  @ManyToOne(() => User, (user) => user.proposals)
+  user:User;
 }

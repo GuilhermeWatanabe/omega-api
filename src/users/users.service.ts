@@ -21,7 +21,7 @@ export class UsersService {
       email: createUserDto.email,
     });
 
-    if (user) throw new BadRequestException('Email already registered');
+    if (user) throw new BadRequestException('Email já cadastrado!');
     try {
       const newUser = this.userRespository.create({
         ...createUserDto,
@@ -31,7 +31,7 @@ export class UsersService {
       delete newUser.password;
       return newUser;
     } catch (err) {
-      throw new BadRequestException('a');
+      throw new BadRequestException('Não foi possivel criar o usuário!');
     }
   }
 
@@ -46,7 +46,7 @@ export class UsersService {
       );
       return user;
     } catch (error) {
-      throw new NotFoundException('User not found');
+      throw new NotFoundException('Usuário não existe!');
     }
   }
 }

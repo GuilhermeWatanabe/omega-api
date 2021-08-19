@@ -35,4 +35,6 @@ export class CreateProposalDto {
     message: 'Submercado inválido.',
   })
   submarket: Submarket;
+
+  user: number;
 }

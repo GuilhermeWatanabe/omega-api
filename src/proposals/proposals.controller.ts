@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { ProposalsService } from './proposals.service';
 import { CreateProposalDto } from './dto/create-proposal.dto';
@@ -18,18 +19,23 @@ export class ProposalsController {
   constructor(private readonly proposalsService: ProposalsService) {}
 
   @Post()
-  create(@Body() createProposalDto: CreateProposalDto) {
+  create(@Body() createProposalDto: CreateProposalDto, @Request() req) {
+    createProposalDto.user = req.user.id;
     return this.proposalsService.create(createProposalDto);
   }
 
   @Get()
-  async findAll() {
-    return await this.proposalsService.findAll();
+  async findAll(@Request() req) {
+    const { id } = req.user;
+    return await this.proposalsService.findAll(id);
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return await this.proposalsService.findOneOrFail({ public_id: id });
+  async findOne(@Param('id') id: string, @Request() req) {
+    return await this.proposalsService.findOneOrFail({
+      public_id: id,
+      user: req.user.id,
+    });
   }
 
   @Patch(':id')

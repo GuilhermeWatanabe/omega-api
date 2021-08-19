@@ -40,11 +40,12 @@ export class ProposalsService {
     newProposal.loads.forEach((load) => {
       delete load.id;
     });
+    delete newProposal.user;
     return newProposal;
   }
 
-  async findAll() {
-    return await this.proposalRepository.find();
+  async findAll(id: number) {
+    return await this.proposalRepository.find({ where: { user: id } });
   }
 
   async findOneOrFail(
@@ -58,7 +59,7 @@ export class ProposalsService {
       );
       return proposal;
     } catch (error) {
-      throw new NotFoundException('Proposal not found');
+      throw new NotFoundException('Proposta não encontrada');
     }
   }
 

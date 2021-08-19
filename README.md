@@ -46,5 +46,23 @@ $ npm run start:prod
 
 ## Autores
 
-- [Guilherme Watanabe](https://github.com/GuilhermeWatanabe)
-- [Thiago Esquivel](https://github.com/thiagosesquivel)
+<table>
+  <tr align="center">
+    <td align="center">
+      <a href="https://github.com/guilhermewatanabe"><img src="https://github.com/guilhermewatanabe.png" width="100px;" alt=""/>
+        <br />
+        <sub><b>Guilherme Watanabe</b></sub>
+      </a>
+      <br />
+      <a href="https://github.com/GuilhermeWatanabe/omega-api/commits?author=guilhermewatanabe&hkr33175 " title="Code">💻</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/thiagosesquivel"><img src="https://github.com/thiagosesquivel.png" width="100px;" alt=""/>
+        <br />
+        <sub><b>Thiago Esquivel</b></sub>
+      </a>
+      <br />
+      <a href="https://github.com/GuilhermeWatanabe/omega-api/commits?author=thiagosesquivel " title="Code">💻</a>
+    </td>
+  </tr>
+</table>

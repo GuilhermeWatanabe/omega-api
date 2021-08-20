@@ -8,12 +8,12 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: process.env.TYPE_CONNECTION,
-      host: process.env.HOST,
-      port: process.env.PORT,
-      database: process.env.DATABASE,
-      username: process.env.DATABASE,
-      password: process.env.PASSWORD,
+      type: "postgres",
+      host: "chunee.db.elephantsql.com",
+      port: 5432,
+      database: "nxgxqmqk",
+      username: "nxgxqmqk",
+      password: "WnzDzup5gzXdMdcluj8IQMLQzsZa1nvu",
       autoLoadEntities: true,
       synchronize: true,
     } as TypeOrmModuleOptions),

@@ -76,7 +76,6 @@ export class ProposalsService {
       throw new BadRequestException(
         'It is not possible to delete an accepted proposal',
       );
-    await this.proposalRepository.remove(proposal);
-    return;
+    return await this.proposalRepository.remove(proposal);
   }
 }

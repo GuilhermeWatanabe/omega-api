@@ -45,6 +45,7 @@ export class ProposalsController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
+      
     return this.proposalsService.remove(id);
   }
 }

@@ -12,6 +12,8 @@ export class Load {
   @Column()
   consumption_kwh: string;
 
-  @ManyToOne(() => Proposal, (proposal) => proposal.public_id)
+  @ManyToOne(() => Proposal, (proposal) => proposal.public_id, {
+      onDelete: 'CASCADE'
+  })
   proposal: Proposal;
 }

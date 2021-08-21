@@ -11,6 +11,8 @@
 
 O projeto Omega API, é um sistema back-end desenvolvido para o projeto final do curso da Gama Academy em parceria com a Omega energia.
 
+Esta API é um projeto desenvolvido para integrar uma [aplicação feita em React](https://github.com/nathanoliveiras/projeto-omegatech).
+
 ---
 
 ## Tecnologias Utilizadas

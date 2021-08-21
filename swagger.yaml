@@ -1,0 +1,285 @@
+openapi: 3.0.1
+info:
+  title: Omega API
+  description: >-
+    API desenvolvida para o projeto final do curso da Gama Academy em parceria com a Omega Energia
+  version: 1.0.0
+externalDocs:
+  description: GitHub
+  url: https://github.com/GuilhermeWatanabe/omega-api
+servers:
+  - url: https://omega--api.herokuapp.com/
+tags:
+  - name: usuários
+    description: Rotas para manipulação do usuário no sistema
+  - name: propostas
+    description: Rotas para manipulação do propostas no sistema
+paths:
+  /users:
+    post:
+      tags:
+        - usuários
+      summary: Cadastra um usuário no sistema
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 3
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 8
+                  format: password
+        required: true
+      responses:
+        '201':
+          description: Cadastrado com sucesso!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      public_id:
+                        type: string
+                        format: uuid
+                      name:
+                        type: string
+                      email:
+                        type: string
+                        format: email
+                  access_token:
+                    type: string
+        '400':
+          description: Bad Request
+  /proposals:
+    get:
+      tags:
+        - propostas
+      summary: Listagem das empresas do usuário logado.
+      responses:
+        '200':
+          description: Sucesso!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    public_id:
+                      type: string
+                      format: uuid
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                    loads:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          company_name:
+                            type: string
+                          consumption_kwh:
+                            type: number
+                    total_consumption:
+                      type: string
+                    energy_source:
+                      type: string
+                      enum: 
+                        - RENOVAVEL
+                        - CONVENCIONAL
+                    submarket:
+                      type: string
+                      enum:
+                        - NORTE
+                        - NORDESTE
+                        - SUL
+                        - SUDESTE
+                    hired:
+                      type: boolean
+                      default: false
+                    proposal_value:
+                      type: string
+      security: 
+        - auth: []
+    post:
+      tags:
+        - propostas
+      summary: Cadastra uma nova proposta.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  format: date
+                end_date:
+                  type: string
+                  format: date
+                loads:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      company_name:
+                        type: string
+                      consumption_kwh:
+                        type: number
+                energy_source:
+                  type: string
+                  enum: 
+                    - RENOVAVEL
+                    - CONVENCIONAL
+                submarket:
+                  type: string
+                  enum:
+                    - NORTE
+                    - NORDESTE
+                    - SUL
+                    - SUDESTE
+      responses:
+        '201':
+          description: Cadastrado com sucesso!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    public_id:
+                      type: string
+                      format: uuid
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                    loads:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          company_name:
+                            type: string
+                          consumption_kwh:
+                            type: number
+                    total_consumption:
+                      type: string
+                    energy_source:
+                      type: string
+                      enum: 
+                        - RENOVAVEL
+                        - CONVENCIONAL
+                    submarket:
+                      type: string
+                      enum:
+                        - NORTE
+                        - NORDESTE
+                        - SUL
+                        - SUDESTE
+                    hired:
+                      type: boolean
+                      default: false
+                    proposal_value:
+                      type: string
+        '400':
+          description: Bad request.
+      security: 
+        - auth: []
+  /proposals/{public_id}:
+    patch:
+      tags:
+        - propostas
+      summary: Contrata uma proposta.
+      parameters: 
+        - name: public_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Contratado.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    public_id:
+                      type: string
+                      format: uuid
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                    loads:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          company_name:
+                            type: string
+                          consumption_kwh:
+                            type: number
+                    total_consumption:
+                      type: string
+                    energy_source:
+                      type: string
+                      enum: 
+                        - RENOVAVEL
+                        - CONVENCIONAL
+                    submarket:
+                      type: string
+                      enum:
+                        - NORTE
+                        - NORDESTE
+                        - SUL
+                        - SUDESTE
+                    hired:
+                      type: boolean
+                    proposal_value:
+                      type: string
+      security: 
+        - auth: []
+    delete:
+      tags:
+        - propostas
+      summary: Deleta uma proposta
+      parameters: 
+        - name: public_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Deletado.
+      security: 
+        - auth: []
+components:
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
